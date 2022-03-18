@@ -61,7 +61,7 @@ class TwitterClient(context: Context) : OAuthBaseClient(
         client.get(apiUrl, params, handler)
     }
 
-    fun publishTweet(tweetContent: EditText, handler: JsonHttpResponseHandler) {
+    fun publishTweet(tweetContent: String, handler: JsonHttpResponseHandler) {
         val apiUrl =
             getApiUrl("statuses/update.json")
 
