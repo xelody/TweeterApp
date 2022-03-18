@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -46,6 +47,8 @@ class ComposeActivity : AppCompatActivity() {
                 val characterRemaining = CHARACTER_LIMIT - character!!
                 // Set to Textview
                 tvCount.text = "Count: $characterRemaining"
+
+                btnTweet.isClickable = characterRemaining >= 0
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -58,21 +61,13 @@ class ComposeActivity : AppCompatActivity() {
             // 1. Make sure the tweet isn't empty
             if (tweetContent.isEmpty()) {
                 Toast.makeText(
-                    ComposeActivity(),
+                    this,
                     "Empty tweets not allowed",
                     Toast.LENGTH_SHORT
                 ).show()
-            }
-
-            // 2. Make sure the tweet is under character count
-            if (tweetContent.length > 280) {
-                btnTweet.isClickable = false
-                Toast.makeText(
-                    ComposeActivity(),
-                    "Tweet is too long! Limit is 140 characters",
-                    Toast.LENGTH_SHORT
-                ).show()
+                // 2. Make sure the tweet is under character count
             } else {
+                btnTweet.isClickable = true
                 client.publishTweet(tweetContent, object : JsonHttpResponseHandler() {
                         override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON) {
                             Log.i(TAG, "Successfully published tweet!")
