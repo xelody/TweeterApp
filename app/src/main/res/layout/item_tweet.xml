@@ -22,6 +22,7 @@
         android:layout_margin="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="Arial"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="melody22" />
